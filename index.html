@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drawflow Boilerplate</title>
+  <meta name="description" content="Simple library for flow programming. Drawflow allows you to create data flows easily and quickly.">
+  <link rel="stylesheet" type="text/css" href="src/drawflow.min.css" />
+  <link rel="stylesheet" type="text/css" href="src/beautiful.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="src/drawflow.min.js"></script>
+</head>
+<body>
+    <header>
+        <h2>Drawflow</h2>
+    </header>
+    <div class="wrapper">
+        <!-- LEFT SIDE (DRAG AND DROPE) -->
+        <div class="col">
+            <div class="drag-drawflow" draggable="true" ondragstart="drag(event)" data-node="facebook">
+                <span> Facebook</span>
+            </div>
+            <!---------------------->
+            <!--More Blocks Here..-->
+            <!---------------------->
+        </div>
+
+
+        <!--Main-->
+        <div class="col-right">
+            <!-- CANVAS -->
+            <div id="drawflow" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <!--Extra Buttons (export, clear, zoom ..etc)-->
+                <div class="btn-export" onclick="Swal.fire({ title: 'Export',
+            html: '<pre><code>'+JSON.stringify(editor.export(), null,4)+'</code></pre>'
+            })">Export</div>
+                <div class="btn-clear" onclick="editor.clearModuleSelected()">Clear</div>
+    
+                <div class="btn-lock">
+                    <i id="lock" class="fas fa-lock" onclick="editor.editor_mode='fixed'; changeMode('lock');"></i>
+                    <i id="unlock" class="fas fa-lock-open" onclick="editor.editor_mode='edit'; changeMode('unlock');"
+                        style="display:none;"></i>
+                </div>
+                <div class="bar-zoom">
+                    <i class="fas fa-search-minus" onclick="editor.zoom_out()"></i>
+                    <i class="fas fa-search" onclick="editor.zoom_reset()"></i>
+                    <i class="fas fa-search-plus" onclick="editor.zoom_in()"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
